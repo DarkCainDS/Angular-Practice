@@ -1,0 +1,81 @@
+<app-slider [nombre]="'Peliculas'"></app-slider>
+
+
+<div class="center">
+  <section id="content">
+    <h2 class="subheader">Peliculas</h2>  
+
+    <div id="favorita" *ngIf="favorita">
+        <h2 class="subheader">Pelicula Favorita</h2>
+        <h1>{{favorita.title | uppercase }}</h1>
+        <h4>{{this.fecha | date: 'short'}}</h4>
+        <h4>{{this.fecha | date: 'fullDate'}}</h4>
+        <h4>{{this.fecha | date: 'dd/MM/yyyy'}}</h4>
+        <h4>{{favorita.year | espar }}</h4>
+        <h4>{{favorita.image}}></h4>
+    </div>
+
+
+
+<!--
+<h2>MOostrar primera pelicula</h2>
+{{peliculas[2].title}}
+
+<hr/>
+
+<h2>Numero de peliculas</h2>
+
+<div *ngIf="peliculas.length <= 3 ">
+    Hay pocas peliculas:
+</div>
+
+<div *ngIf="peliculas.length > 3">
+    Hay Muchas peliculas:
+</div>
+
+{{peliculas.length}}
+
+<hr/>
+-->
+<h2 class="subheader">Listado de peliculas</h2>
+
+<div id="articles" *ngIf="peliculas">
+
+    <!--
+    <article class="article-item" *ngFor="let pelicula of peliculas;let i = index;">
+        <div class="image-wrap">
+            <img src="{{pelicula.image}}" alt="{{pelicula.title}}"/>
+        </div>
+
+        <h2>{{pelicula.title}}</h2>
+
+        <span class="date">
+            Hace 5 minutos
+        </span>
+
+        <span class="year" [ngClass]="{
+                'year-green': pelicula.year > 2004,
+                'year-red': pelicula.year < 2004
+        }" >
+            {{pelicula.year}}
+        </span>
+
+
+        <a href="#">Leer mas</a>
+        <div class="clearfix"></div>
+    </article>
+    -->
+    <div *ngFor="let pelicula of peliculas; let i = index;">
+    <app-pelicula 
+    [pelicula]= "pelicula"
+    (marcarFavorita)="mostrarFavorita($event)"
+    
+    ></app-pelicula>
+     </div>
+
+    <!--Añadir articulos via JS-->
+</div>
+
+</section>
+<app-sidebar></app-sidebar>
+</div>
